@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS books_db;
+USE books_db;
+
+
+DROP TABLE IF EXISTS books;
