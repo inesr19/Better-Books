@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 $(document).ready(function() {
     $("#search-button").on("click", function() {
       var searchValue = $("#search-value").val();
@@ -16,30 +18,35 @@ $(document).ready(function() {
       var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
       $(".history").append(li);
     }
-  
+  // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY
     function searchBook(searchValue) {
+      const apiKey = 'AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY'
+      const querylUrl = `https://www.googleapis.com/books/v1/volumes?q="${searchValue}inauthor:keyes&key=${apiKey}`
       $.ajax({
-        type: "GET",
-        url: "https://www.googleapis.com/books/v1/volumes?q=" + searchValue + "inauthor:keyes&key=AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY",
-        // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY
-        dataType: "json",
-        success: function(data) {
-          // create history link for this search
-          if (history.indexOf(searchValue) === -1) {
-            history.push(searchValue);
-            window.localStorage.setItem("history", JSON.stringify(history));
+        url: querylUrl,
+        method: "GET",
+      }).then((response) => {
+        
+      })
+        
+        // dataType: "json",
+        // success: function(data) {
+        //   // create history link for this search
+        //   if (history.indexOf(searchValue) === -1) {
+        //     history.push(searchValue);
+        //     window.localStorage.setItem("history", JSON.stringify(history));
       
-            makeRow(searchValue);
-          }
+        //     makeRow(searchValue);
+        //   }
           
           // clear any old content
           $("#today").empty();
   
           // create html content for current weather
           var card = $("<div>").addClass("card");
-          var title = $("<p>").addClass("card-text").text("Book Title: " + items.volumeInfo.title );
-          var subtitle = $("<p>").addClass("card-text").text("Book Title: " + items.volumeInfo.title.subtitle );
-          var author = $("<p>").addClass("card-text").text("Author: " + items.volumeInfo.authors);
+          var title = $("<p>").addClass("card-content").text("Book Title: " + items.volumeInfo.title );
+          var subtitle = $("<p>").addClass("card-content").text("Book Title: " + items.volumeInfo.title.subtitle );
+          var author = $("<p>").addClass("card-content").text("Author: " + items.volumeInfo.authors);
         //   var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
         //   var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
         //   var cardBody = $("<div>").addClass("card-body");
@@ -56,18 +63,18 @@ $(document).ready(function() {
   
         }
       });
-    }
+    // }
     
     
   
-    // get current history, if any
-    var history = JSON.parse(window.localStorage.getItem("history")) || [];
+  //   // get current history, if any
+  //   var history = JSON.parse(window.localStorage.getItem("history")) || [];
   
-    if (history.length > 0) {
-      searchBook(history[history.length-1]);
-    }
+  //   if (history.length > 0) {
+  //     searchBook(history[history.length-1]);
+  //   }
   
-    for (var i = 0; i < history.length; i++) {
-      makeRow(history[i]);
-    }
-  });
+  //   for (var i = 0; i < history.length; i++) {
+  //     makeRow(history[i]);
+  //   }
+  // });
