@@ -1,4 +1,4 @@
-const { response } = require("express");
+
 
 $(document).ready(function() {
     $("#search-button").on("click", function() {
@@ -18,48 +18,23 @@ $(document).ready(function() {
       var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
       $(".history").append(li);
     }
-  // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY
     function searchBook(searchValue) {
       const apiKey = 'AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY'
-      const querylUrl = `https://www.googleapis.com/books/v1/volumes?q="${searchValue}inauthor:keyes&key=${apiKey}`
+      const querylUrl = `https://www.googleapis.com/books/v1/volumes?q=intitle'${searchValue}:keyes&key=${apiKey}`
       $.ajax({
         url: querylUrl,
         method: "GET",
       }).then((response) => {
+        console.log(response);
+        // only pulls 1st in array
+        $(".title").append(response.items[1].volumeInfo.title);
+        $(".author").append(response.items[1].volumeInfo.authors[0]);
+        $(".description").append(response.items[1].volumeInfo.description);
+        $(".categories").append(response.items[1].volumeInfo.categories[0]);
         
       })
         
-        // dataType: "json",
-        // success: function(data) {
-        //   // create history link for this search
-        //   if (history.indexOf(searchValue) === -1) {
-        //     history.push(searchValue);
-        //     window.localStorage.setItem("history", JSON.stringify(history));
-      
-        //     makeRow(searchValue);
-        //   }
-          
-          // clear any old content
-          $("#today").empty();
-  
-          // create html content for current weather
-          var card = $("<div>").addClass("card");
-          var title = $("<p>").addClass("card-content").text("Book Title: " + items.volumeInfo.title );
-          var subtitle = $("<p>").addClass("card-content").text("Book Title: " + items.volumeInfo.title.subtitle );
-          var author = $("<p>").addClass("card-content").text("Author: " + items.volumeInfo.authors);
-        //   var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
-        //   var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
-        //   var cardBody = $("<div>").addClass("card-body");
-        //   var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
-  
-          // merge and add to page
-          // title.append(img);
-          cardBody.append(title, subtitle, author);
-          card.append(cardBody);
-          $("#today").append(card);
-  
-          // call follow-up api endpoints
-          getBook(searchValue);
+       
   
         }
       });
