@@ -21,37 +21,45 @@ const bookInfoDiv = $('.bookInfo');
 
         bookInfoDiv.empty();
       
+        const itemsArray = response.items;
+        for (let i = 0; i < itemsArray.length; i++) {
+          const item = itemsArray[i].volumeInfo;
+          const imgEl = item.imageLinks.thumbnail;
+          const titleEl = item.title;
+          const authorEl = item.authors;
+          const desEl = item.description; 
+          const catEl = item.categories;
 
         $('<img>', {
           class: 'image',
-          src: response.items[0].volumeInfo.imageLinks.thumbnail
+          src= imgEl
         }).appendTo(bookInfoDiv)
           
         $('<div>', {
           class: 'title',
-          text: response.items[0].volumeInfo.title
+          text: titleEl
         }).appendTo(bookInfoDiv)
           
         $('<div>', {
           class: 'author',
-          text: response.items[0].volumeInfo.authors[0]
+          text: authorEl
         }).appendTo(bookInfoDiv)
           
         $('<div>', {
           class: 'description',
-          text: response.items[0].volumeInfo.description
+          text: desEl
         }).appendTo(bookInfoDiv)
         
         $('<div>', {
           class: 'categories',
-          text: response.items[0].volumeInfo.categories[0]
+          text: catEl
         }).appendTo(bookInfoDiv)
 
         // $(".title").append(response.items[0].volumeInfo.title);
         // $(".author").append(response.items[0].volumeInfo.authors[0]);
         // $(".description").append(response.items[0].volumeInfo.description);
         // $(".categories").append(response.items[0].volumeInfo.categories[0]);
-        
+      }
       });
       }
 
