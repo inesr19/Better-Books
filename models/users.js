@@ -1,22 +1,17 @@
-module.exports = (sequelize, DataTypes) => {
-    const userName = sequelize.define('User Name', {
-        name: DataTypes.STRING,
+module.exports = function (sequelize, DataTypes) {
+    const User = sequelize.define("User", {
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true
+            }
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     });
-    const password = sequelize.define('Password', {
-        name: DataTypes.STRING,
-    });
-
-    userName.associate = (models) => {
-        userName.hasMany(models.Post, {
-            onDelete: 'cascade',
-        });
-    };
-
-    password.associate = (models) => {
-        password.hasMany(models.Post, {
-            onDelete: 'cascade',
-        });
-    };
-
-    return userName;
+    return User;
 };
