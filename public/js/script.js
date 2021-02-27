@@ -1,18 +1,8 @@
+const bookInfoDiv = $('.bookInfo');
 
-
-$(document).ready(function() {
-    $("#search-button").on("click", function() {
-      var searchValue = $("#search-value").val();
-  
-      // clear input box
-      $("#search-value").val("");
-  
-      searchBook(searchValue);
-    });
-  
-    $(".history").on("click", "li", function() {
-      searchBook($(this).text());
-    });
+    // $(".history").on("click", "li", function() {
+    //   searchBook($(this).text());
+    // });
   
     function makeRow(text) {
       var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
@@ -20,25 +10,61 @@ $(document).ready(function() {
     }
     function searchBook(searchValue) {
       const apiKey = 'AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY'
-      const querylUrl = `https://www.googleapis.com/books/v1/volumes?q=intitle'${searchValue}:keyes&key=${apiKey}`
+  
+      const querylUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&orderBy=relevance&keyes&key=&${apiKey}`
+      console.log(querylUrl);
       $.ajax({
         url: querylUrl,
         method: "GET",
       }).then((response) => {
         console.log(response);
-        // only pulls 1st in array
-        $(".title").append(response.items[1].volumeInfo.title);
-        $(".author").append(response.items[1].volumeInfo.authors[0]);
-        $(".description").append(response.items[1].volumeInfo.description);
-        $(".categories").append(response.items[1].volumeInfo.categories[0]);
+
+        bookInfoDiv.empty();
+      
+
+        $('<img>', {
+          class: 'image',
+          src: response.items[0].volumeInfo.imageLinks.thumbnail
+        }).appendTo(bookInfoDiv)
+          
+        $('<div>', {
+          class: 'title',
+          text: response.items[0].volumeInfo.title
+        }).appendTo(bookInfoDiv)
+          
+        $('<div>', {
+          class: 'author',
+          text: response.items[0].volumeInfo.authors[0]
+        }).appendTo(bookInfoDiv)
+          
+        $('<div>', {
+          class: 'description',
+          text: response.items[0].volumeInfo.description
+        }).appendTo(bookInfoDiv)
         
-      })
+        $('<div>', {
+          class: 'categories',
+          text: response.items[0].volumeInfo.categories[0]
+        }).appendTo(bookInfoDiv)
+
+        // $(".title").append(response.items[0].volumeInfo.title);
+        // $(".author").append(response.items[0].volumeInfo.authors[0]);
+        // $(".description").append(response.items[0].volumeInfo.description);
+        // $(".categories").append(response.items[0].volumeInfo.categories[0]);
         
-       
-  
-        }
       });
-    // }
+      }
+
+      $(document).ready(function() {
+        $(".btn").on("click", function() {
+          const search = $("#search-value").val();
+          console.log(search);
+          // clear input box
+          $("#search-value").val("");
+     
+          searchBook(search);
+        });
+    });
     
     
   
