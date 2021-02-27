@@ -32,7 +32,7 @@ const bookInfoDiv = $('.bookInfo');
 
         $('<img>', {
           class: 'image',
-          src= imgEl
+          src: imgEl
         }).appendTo(bookInfoDiv)
           
         $('<div>', {
