@@ -30,6 +30,7 @@ const bookInfoDiv = $('.bookInfo');
           const desEl = item.description; 
           const catEl = item.categories;
 
+        // if their is no image, as placeholder. 
         if(imgEl !== undefined) {
           $('<img>', {
             class: 'image',
