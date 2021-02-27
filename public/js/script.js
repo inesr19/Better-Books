@@ -1,73 +1,81 @@
-$(document).ready(function() {
-    $("#search-button").on("click", function() {
-      var searchValue = $("#search-value").val();
-  
-      // clear input box
-      $("#search-value").val("");
-  
-      searchBook(searchValue);
-    });
-  
-    $(".history").on("click", "li", function() {
-      searchBook($(this).text());
-    });
+const bookInfoDiv = $('.bookInfo');
+
+    // $(".history").on("click", "li", function() {
+    //   searchBook($(this).text());
+    // });
   
     function makeRow(text) {
       var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
       $(".history").append(li);
     }
-  
     function searchBook(searchValue) {
+      const apiKey = 'AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY'
+  
+      const querylUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&orderBy=relevance&keyes&key=&${apiKey}`
+      console.log(querylUrl);
       $.ajax({
-        type: "GET",
-        url: "https://www.googleapis.com/books/v1/volumes?q=" + searchValue + "inauthor:keyes&key=AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY",
-        // https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY
-        dataType: "json",
-        success: function(data) {
-          // create history link for this search
-          if (history.indexOf(searchValue) === -1) {
-            history.push(searchValue);
-            window.localStorage.setItem("history", JSON.stringify(history));
+        url: querylUrl,
+        method: "GET",
+      }).then((response) => {
+        console.log(response);
+
+        bookInfoDiv.empty();
       
-            makeRow(searchValue);
-          }
+
+        $('<img>', {
+          class: 'image',
+          src: response.items[0].volumeInfo.imageLinks.thumbnail
+        }).appendTo(bookInfoDiv)
           
-          // clear any old content
-          $("#today").empty();
-  
-          // create html content for current weather
-          var card = $("<div>").addClass("card");
-          var title = $("<p>").addClass("card-text").text("Book Title: " + items.volumeInfo.title );
-          var subtitle = $("<p>").addClass("card-text").text("Book Title: " + items.volumeInfo.title.subtitle );
-          var author = $("<p>").addClass("card-text").text("Author: " + items.volumeInfo.authors);
-        //   var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
-        //   var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
-        //   var cardBody = $("<div>").addClass("card-body");
-        //   var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
-  
-          // merge and add to page
-          // title.append(img);
-          cardBody.append(title, subtitle, author);
-          card.append(cardBody);
-          $("#today").append(card);
-  
-          // call follow-up api endpoints
-          getBook(searchValue);
-  
-        }
+        $('<div>', {
+          class: 'title',
+          text: response.items[0].volumeInfo.title
+        }).appendTo(bookInfoDiv)
+          
+        $('<div>', {
+          class: 'author',
+          text: response.items[0].volumeInfo.authors[0]
+        }).appendTo(bookInfoDiv)
+          
+        $('<div>', {
+          class: 'description',
+          text: response.items[0].volumeInfo.description
+        }).appendTo(bookInfoDiv)
+        
+        $('<div>', {
+          class: 'categories',
+          text: response.items[0].volumeInfo.categories[0]
+        }).appendTo(bookInfoDiv)
+
+        // $(".title").append(response.items[0].volumeInfo.title);
+        // $(".author").append(response.items[0].volumeInfo.authors[0]);
+        // $(".description").append(response.items[0].volumeInfo.description);
+        // $(".categories").append(response.items[0].volumeInfo.categories[0]);
+        
       });
-    }
+      }
+
+      $(document).ready(function() {
+        $(".btn").on("click", function() {
+          const search = $("#search-value").val();
+          console.log(search);
+          // clear input box
+          $("#search-value").val("");
+     
+          searchBook(search);
+        });
+    });
     
     
   
-    // get current history, if any
-    var history = JSON.parse(window.localStorage.getItem("history")) || [];
+  //   // get current history, if any
+  //   var history = JSON.parse(window.localStorage.getItem("history")) || [];
   
-    if (history.length > 0) {
-      searchBook(history[history.length-1]);
-    }
+  //   if (history.length > 0) {
+  //     searchBook(history[history.length-1]);
+  //   }
   
-    for (var i = 0; i < history.length; i++) {
-      makeRow(history[i]);
-    }
-  });
+  //   for (var i = 0; i < history.length; i++) {
+  //     makeRow(history[i]);
+  //   }
+  // });
