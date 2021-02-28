@@ -1,22 +1,13 @@
-module.exports = (sequelize, DataTypes) => {
-    const bookTitle = sequelize.define('Book Title', {
-        name: DataTypes.STRING,
-    });
-    const author = sequelize.define('Author', {
-        name: DataTypes.STRING,
-    });
+const Sequelize = require('sequelize');
+const sequelize = require('../config/connection.js');
 
-    bookTitle.associate = (models) => {
-        userName.hasMany(models.Post, {
-            onDelete: 'cascade',
-        });
-    };
+const Book = sequelize.define('Book', {
+    title: Sequelize.STRING,
+    author: Sequelize.STRING,
+    genre: Sequelize.STRING,
+    pages: Sequelize.INTEGER,
+});
 
-    author.associate = (models) => {
-        userName.hasMany(models.Post, {
-            onDelete: 'cascade',
-        });
-    };
+Book.sync();
 
-    return bookTitle;
-};
+module.exports = Book;
