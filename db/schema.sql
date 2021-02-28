@@ -1,3 +1,4 @@
-CREATE DATABASE IF NOT EXISTS books_db;
+DROP DATABASE IF EXISTS books_db;
+CREATE DATABASE books_db;
 
 USE books_db;
