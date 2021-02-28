@@ -24,16 +24,24 @@ const bookInfoDiv = $('.bookInfo');
         const itemsArray = response.items;
         for (let i = 0; i < itemsArray.length; i++) {
           const item = itemsArray[i].volumeInfo;
-          const imgEl = item.imageLinks.thumbnail;
+          const imgEl = item.imageLinks;
           const titleEl = item.title;
           const authorEl = item.authors;
           const desEl = item.description; 
           const catEl = item.categories;
 
-        $('<img>', {
-          class: 'image',
-          src: imgEl
-        }).appendTo(bookInfoDiv)
+        // if their is no image, as placeholder. 
+        if(imgEl !== undefined) {
+          $('<img>', {
+            class: 'image',
+            src: item.imageLinks.thumbnail
+          }).appendTo(bookInfoDiv)
+        } else {
+          $('<img>', {
+            class: 'image',
+            src: 'http://placehold.it/128x198'
+          }).appendTo(bookInfoDiv)
+        }
           
         $('<div>', {
           class: 'title',
