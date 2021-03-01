@@ -61,7 +61,12 @@ const bookInfoDiv = $('.bookInfo');
         $('<div>', {
           class: 'categories',
           text: catEl
-        }).appendTo(bookInfoDiv)
+        }).append($('<br><br>', {
+          // line space between genere and save book button.
+        })).append($('<div>', {
+          class: 'save btn-large',
+          text: 'save book'
+        })).appendTo(bookInfoDiv)
 
         // $(".title").append(response.items[0].volumeInfo.title);
         // $(".author").append(response.items[0].volumeInfo.authors[0]);
