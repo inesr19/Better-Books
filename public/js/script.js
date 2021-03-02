@@ -68,12 +68,6 @@ const bookInfoDiv = $('.bookInfo');
           class: 'save btn-large',
           text: 'save book'
         })).appendTo(bookInfoDiv)
-
-
-        // $(".title").append(response.items[0].volumeInfo.title);
-        // $(".author").append(response.items[0].volumeInfo.authors[0]);
-        // $(".description").append(response.items[0].volumeInfo.description);
-        // $(".categories").append(response.items[0].volumeInfo.categories[0]);
       }
       });
       }
@@ -89,18 +83,10 @@ const bookInfoDiv = $('.bookInfo');
           searchBook(search);
         });
     });
-
- 
-  
+    $(document).ready(function(){
+      $('save btn-large').click(function(){
+        $(titleEl).append("/list.html");
+      });
+    });
     
-  //   // get current history, if any
-  //   var history = JSON.parse(window.localStorage.getItem("history")) || [];
   
-  //   if (history.length > 0) {
-  //     searchBook(history[history.length-1]);
-  //   }
-  
-  //   for (var i = 0; i < history.length; i++) {
-  //     makeRow(history[i]);
-  //   }
-  // })
