@@ -8,6 +8,7 @@ const bookInfoDiv = $('.bookInfo');
       var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
       $(".history").append(li);
     }
+
     function searchBook(searchValue) {
       const apiKey = 'AIzaSyAR-EWCSpmrvXO7U1NX636P7rn1fJWsUJY'
   
@@ -68,6 +69,7 @@ const bookInfoDiv = $('.bookInfo');
           text: 'save book'
         })).appendTo(bookInfoDiv)
 
+
         // $(".title").append(response.items[0].volumeInfo.title);
         // $(".author").append(response.items[0].volumeInfo.authors[0]);
         // $(".description").append(response.items[0].volumeInfo.description);
@@ -75,6 +77,7 @@ const bookInfoDiv = $('.bookInfo');
       }
       });
       }
+    
 
       $(document).ready(function() {
         $(".btn").on("click", function() {
@@ -86,9 +89,10 @@ const bookInfoDiv = $('.bookInfo');
           searchBook(search);
         });
     });
-    
-    
+
+ 
   
+    
   //   // get current history, if any
   //   var history = JSON.parse(window.localStorage.getItem("history")) || [];
   
@@ -99,4 +103,4 @@ const bookInfoDiv = $('.bookInfo');
   //   for (var i = 0; i < history.length; i++) {
   //     makeRow(history[i]);
   //   }
-  // });
+  // })
