@@ -8,14 +8,25 @@ module.exports = (app) => {
             }
         }).then((dbBook) => res.json(dbBook));
     });
-}
 
-app.post('/api/books', (req, res) => {
-    console.log(req.body);
-    db.Post.create({
-        title: req.body.title,
-        body: req.body.body,
-        category: req.body.category,
-        email: req.body.email
-    }).then((dbPost) => res.json(dbPost));
-});
+
+    app.post('/api/books', (req, res) => {
+        console.log(req.body);
+        db.Post.create({
+            title: req.body.title,
+            body: req.body.body,
+            category: req.body.category,
+            email: req.body.email
+        }).then((dbPost) => res.json(dbPost));
+    });
+
+    app.post('/api/login', (req, res) => {
+        console.log(req.body);
+        db.User.findAll({
+            where: {
+                email: req.body.email
+            }
+        })
+        }).then((dbUser) => res.json(dbUser));
+    });
+}
