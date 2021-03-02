@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const dotenv = require('dotenv').config();
 const myPassword = process.env.MYSQL_PASSWORD;
 
