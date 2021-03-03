@@ -32,6 +32,7 @@ function searchBook(searchValue) {
       const desEl = item.description;
       const catEl = item.categories;
 
+      $("<br><br>").appendTo(bookInfoDiv);
       // if their is no image, as placeholder.
       if (imgEl !== undefined) {
         $("<img>", {
@@ -44,7 +45,6 @@ function searchBook(searchValue) {
           src: "http://placehold.it/128x198",
         }).appendTo(bookInfoDiv);
       }
-    
 
       $("<div>", {
         class: "title",
@@ -53,23 +53,26 @@ function searchBook(searchValue) {
 
       $("<div>", {
         class: "author",
-        text: authorEl,
+        text: `Author: ${authorEl}`,
       }).appendTo(bookInfoDiv);
 
       $("<div>", {
         class: "description",
-        text: desEl,
+        text: `Description: ${desEl}`,
       }).appendTo(bookInfoDiv);
 
       $("<div>", {
         class: "categories",
-        text: catEl,
+        text: `Categories: ${catEl}`,
       }).appendTo(bookInfoDiv);
+
+      $("<hr>").appendTo(bookInfoDiv);
 
       $("<div>", {
         class: "save btn-large",
         text: "save book",
       }).appendTo(bookInfoDiv);
+
     }
     console.log("append");
     $(".save.btn-large").on("click", function () {
