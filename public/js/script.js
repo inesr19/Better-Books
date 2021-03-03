@@ -88,7 +88,7 @@ function searchBook(searchValue) {
       const description = $(this).siblings('.description').text();
       const cover = $(this).siblings('.image').attr('src');
       const isbn = $(this).siblings('.isbn').text();
-  
+
       console.log(title)
       fetch('/api/books', {
         method: 'POST',
@@ -99,6 +99,17 @@ function searchBook(searchValue) {
           cover,
           isbn,
           email: 'martsyalis'
+        })
+      })
+      fetch('/api/books', {
+        method: 'GET',
+        body: JSON.parse({
+          title,
+          author,
+          description,
+          cover,
+          isbn,
+          email: ''
         })
       })
     });
