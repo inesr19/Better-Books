@@ -14,9 +14,9 @@ module.exports = (app) => {
         console.log(req.body);
         db.Post.create({
             title: req.body.title,
-            body: req.body.body,
-            category: req.body.category,
-            email: req.body.email
+            author: req.body.author,
+            email: req.body.email,
+            isbn: req.body.isbn
         }).then((dbPost) => res.json(dbPost));
     });
 
