@@ -1,0 +1,37 @@
+.brand-logo {
+    margin-left: 10px;
+}
+
+.header-container {
+    text-align: center;
+}
+
+.content-container {
+    margin: 15%;
+    margin-top: -2%;
+    padding: 2%;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.bookInfo {
+    margin-top: -20%;
+}
+
+.title {
+    font-weight: bold;
+    font-size: medium;
+}
+
+a {
+    color: white;
+}
+
+.card-panel {
+    margin: 10%;
+    padding: 5%;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
+    background-color: white;
+}

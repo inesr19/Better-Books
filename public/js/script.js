@@ -1,4 +1,4 @@
-const bookInfoDiv = $(".bookInfo");
+const booksDiv = $(".bookInfo");
 
 // $(".history").on("click", "li", function() {
 //   searchBook($(this).text());
@@ -21,7 +21,7 @@ function searchBook(searchValue) {
   }).then((response) => {
     console.log(response);
 
-    bookInfoDiv.empty();
+    booksDiv.empty();
 
     const itemsArray = response.items;
     for (let i = 0; i < itemsArray.length; i++) {
@@ -31,7 +31,9 @@ function searchBook(searchValue) {
       const authorEl = item.authors;
       const desEl = item.description;
       const catEl = item.categories;
-
+      const isbn = item.industryIdentifiers[0].indentifier;
+      const bookInfoDiv = $('<div>')
+      $("<br><br>").appendTo(bookInfoDiv);
       // if their is no image, as placeholder.
       if (imgEl !== undefined) {
         $("<img>", {
@@ -52,27 +54,53 @@ function searchBook(searchValue) {
 
       $("<div>", {
         class: "author",
-        text: authorEl,
+        text: `Author: ${authorEl}`,
       }).appendTo(bookInfoDiv);
 
       $("<div>", {
         class: "description",
-        text: desEl,
+        text: `Description: ${desEl}`,
       }).appendTo(bookInfoDiv);
 
       $("<div>", {
         class: "categories",
-        text: catEl,
+        text: `Categories: ${catEl}`,
       }).appendTo(bookInfoDiv);
+
+      $("<div>", {
+        class: "isbn",
+        text: `isbn: ${isbn}`,
+      }).appendTo(bookInfoDiv);
+
+      $("<hr>").appendTo(bookInfoDiv);
 
       $("<div>", {
         class: "save btn-large",
         text: "save book",
       }).appendTo(bookInfoDiv);
+      bookInfoDiv.appendTo(booksDiv)
     }
     console.log("append");
     $(".save.btn-large").on("click", function () {
       console.log("you have click on save book");
+      const title = $(this).siblings('.title').text();
+      const author = $(this).siblings('.author').text();
+      const description = $(this).siblings('.description').text();
+      const cover = $(this).siblings('.image').attr('src');
+      const isbn = $(this).siblings('.isbn').text();
+  
+      console.log(title)
+      fetch('/api/books', {
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          author,
+          description,
+          cover,
+          isbn,
+          email: 'martsyalis'
+        })
+      })
     });
   });
 }
