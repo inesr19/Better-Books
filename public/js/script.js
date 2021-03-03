@@ -25,13 +25,15 @@ const bookInfoDiv = $('.bookInfo');
         const itemsArray = response.items;
         for (let i = 0; i < itemsArray.length; i++) {
           const item = itemsArray[i].volumeInfo;
-          const imgEl = item.imageLinks;
+          const imgEl = item.imageLinks
           const titleEl = item.title;
           const authorEl = item.authors;
           const desEl = item.description; 
           const catEl = item.categories;
-
+          
         // if their is no image, as placeholder. 
+        $('<br><br>').appendTo(bookInfoDiv);
+
         if(imgEl !== undefined) {
           $('<img>', {
             class: 'image',
@@ -41,33 +43,33 @@ const bookInfoDiv = $('.bookInfo');
           $('<img>', {
             class: 'image',
             src: 'http://placehold.it/128x198'
-          }).appendTo(bookInfoDiv)
+          }).appendTo(bookInfoDiv);
         }
-          
+
         $('<div>', {
           class: 'title',
           text: titleEl
-        }).appendTo(bookInfoDiv)
+        }).appendTo(bookInfoDiv);
           
         $('<div>', {
           class: 'author',
-          text: authorEl
-        }).appendTo(bookInfoDiv)
+          text: `Author: ${authorEl}`
+        }).appendTo(bookInfoDiv);
           
         $('<div>', {
           class: 'description',
-          text: desEl
-        }).appendTo(bookInfoDiv)
+          text: `Description: ${desEl}`
+        }).appendTo(bookInfoDiv);
         
         $('<div>', {
           class: 'categories',
-          text: catEl
+          text: `Categories: ${catEl}`
         }).append($('<br><br>', {
           // line space between genere and save book button.
         })).append($('<div>', {
           class: 'save btn-large',
           text: 'save book'
-        })).appendTo(bookInfoDiv)
+        })).appendTo(bookInfoDiv);
       }
       });
       }
