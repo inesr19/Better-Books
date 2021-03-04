@@ -10,12 +10,14 @@ module.exports = (app) => {
     });
 
 
-    app.post('/api/books', (req, res) => {
+    app.Post('/api/books', (req, res) => {
         console.log(req.body);
         res.send('hello')
-         db.post.create({
+         db.Post.create({
             title: req.body.title,
             author: req.body.author,
+            description: req.body.description,
+            cover: req.body.cover,
             email: req.body.email,
             isbn: req.body.isbn
         }).then((dbPost) => res.json(dbPost));
