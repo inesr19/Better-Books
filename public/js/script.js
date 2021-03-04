@@ -33,6 +33,7 @@ function searchBook(searchValue) {
       const catEl = item.categories;
       const isbn = item.industryIdentifiers[0].indentifier;
       const bookInfoDiv = $('<div>')
+
       $("<br><br>").appendTo(bookInfoDiv);
       // if their is no image, as placeholder.
       if (imgEl !== undefined) {
@@ -90,7 +91,7 @@ function searchBook(searchValue) {
       const isbn = $(this).siblings('.isbn').text();
   
       console.log(title)
-      fetch('/api/books', {
+      fetch('http://localhost:8080/api/books', {
         method: 'POST',
         body: JSON.stringify({
           title,
