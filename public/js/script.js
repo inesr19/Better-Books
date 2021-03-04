@@ -102,17 +102,12 @@ function searchBook(searchValue) {
           email: 'martsyalis'
         })
       })
-      fetch('/api/books', {
-        method: 'GET',
-        body: JSON.parse({
-          title,
-          author,
-          description,
-          cover,
-          isbn,
-          email: ''
-        })
+      fetch('http://localhost:8080/api/list').then((response) => {
+        return response.json();
       })
+      .then((data) => {
+        console.log(data)
+      });
     });
   });
 }
