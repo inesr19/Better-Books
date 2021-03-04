@@ -9,13 +9,17 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        isbn: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: true
         },
         cover: {
             type: DataTypes.TEXT,
             allowNull: true
+        },
+        isbn: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         email: {
             type: DataTypes.STRING,
