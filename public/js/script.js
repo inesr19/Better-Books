@@ -32,7 +32,7 @@ function searchBook(searchValue) {
       const desEl = item.description;
       const catEl = item.categories;
       const isbn = item.industryIdentifiers[0].indentifier;
-      const bookInfoDiv = $('<div>')
+      const bookInfoDiv = $('<div class="card-panel">')
 
       $("<br><br>").appendTo(bookInfoDiv);
       // if their is no image, as placeholder.
