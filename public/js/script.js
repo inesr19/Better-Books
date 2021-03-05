@@ -95,13 +95,16 @@ function searchBook(searchValue) {
       // Fetch database
       fetch(`/api/books`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           title,
           author,
           description,
           cover,
           isbn,
-          email: 'martsyalis'
+          email: 'test@abc.com'
         })
       }).then(response => {
         return response.json();
