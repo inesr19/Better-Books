@@ -1,6 +1,6 @@
 const cors = require("cors")
 const express = require("express");
-const connection = require('./config/connection');
+const connection = require('./config/config.json');
 
 // html routes
 const htmlRouter = require('./routes/html-routes');
@@ -24,6 +24,6 @@ htmlRouter(app);
 booksRouter(app);
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync().then(() => {
     app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
   });
