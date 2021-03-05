@@ -93,7 +93,7 @@ function searchBook(searchValue) {
       console.log(title)
 
       // Fetch database
-      fetch('/api/books', {
+      fetch('https://api/books', {
         method: 'POST',
         body: JSON.stringify({
           title,
@@ -109,7 +109,7 @@ function searchBook(searchValue) {
       .then(data => console.log(data))
       .catch(error => console.log(error))
       
-      fetch('/api/list').then((response) => {
+      fetch('https://ap1/list').then((response) => {
         return response.json();
       })
       .then((data) => {
