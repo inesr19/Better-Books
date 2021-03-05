@@ -93,7 +93,7 @@ function searchBook(searchValue) {
       console.log(title)
 
       // Fetch database
-      fetch('https://fathomless-taiga-07873.herokuapp.com/books', {
+      fetch(`/api/books`, {
         method: 'POST',
         body: JSON.stringify({
           title,
@@ -109,7 +109,7 @@ function searchBook(searchValue) {
       .then(data => console.log(data))
       .catch(error => console.log(error))
       
-      fetch('https://fathomless-taiga-07873.herokuapp.com/list').then((response) => {
+      fetch(`/api/list`).then((response) => {
         return response.json();
       })
       .then((data) => {
