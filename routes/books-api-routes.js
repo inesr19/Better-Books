@@ -10,7 +10,7 @@ module.exports = (app) => {
     });
 
 
-    app.post('/api/list', (req, res) => {
+    app.post('/api/books', (req, res) => {
         console.log(req.body);
         // res.send('hello')
          db.Book.create({
