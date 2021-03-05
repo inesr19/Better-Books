@@ -102,7 +102,11 @@ function searchBook(searchValue) {
           cover,
           isbn,
           email: 'martsyalis'
-        }).then
+        }).then(response => {
+          return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
       })
       
       fetch('http://localhost:8080/api/list').then((response) => {
