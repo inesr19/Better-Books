@@ -32,7 +32,7 @@ function searchBook(searchValue) {
       const desEl = item.description;
       const catEl = item.categories;
       const isbn = item.industryIdentifiers[0].indentifier;
-      const bookInfoDiv = $('<div>')
+      const bookInfoDiv = $('<div class="card-panel">')
 
       $("<br><br>").appendTo(bookInfoDiv);
       // if their is no image, as placeholder.
@@ -91,6 +91,8 @@ function searchBook(searchValue) {
       const isbn = $(this).siblings('.isbn').text();
 
       console.log(title)
+
+      // Fetch database
       fetch('http://localhost:8080/api/books', {
         method: 'POST',
         body: JSON.stringify({
@@ -101,7 +103,12 @@ function searchBook(searchValue) {
           isbn,
           email: 'martsyalis'
         })
+      }).then(response => {
+        return response.json();
       })
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
+      
       fetch('http://localhost:8080/api/list').then((response) => {
         return response.json();
       })
