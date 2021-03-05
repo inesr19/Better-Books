@@ -91,6 +91,8 @@ function searchBook(searchValue) {
       const isbn = $(this).siblings('.isbn').text();
 
       console.log(title)
+
+      // Fetch database
       fetch('http://localhost:8080/api/books', {
         method: 'POST',
         body: JSON.stringify({
