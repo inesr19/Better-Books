@@ -10,9 +10,10 @@ module.exports = (app) => {
     });
 
 
-    app.post('/api/books', (req, res) => {
+    app.post('/api/list', (req, res) => {
         console.log(req.body);
-        db.Post.create({
+        res.send('hello')
+         db.post.create({
             title: req.body.title,
             author: req.body.author,
             email: req.body.email,
@@ -27,6 +28,6 @@ module.exports = (app) => {
                 email: req.body.email
             }
         })
-        }).then((dbUser) => res.json(dbUser));
+        .then((dbUser) => res.json(dbUser));
     });
 }

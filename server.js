@@ -1,12 +1,14 @@
+const cors = require("cors")
 const express = require("express");
 const connection = require('./config/connection');
 
 // html routes
-
+const htmlRouter = require('./routes/html-routes');
+const booksRouter = require('./routes/books-api-routes');
 // express app
 const app = express();
 const PORT = process.env.PORT || 8080;
-
+cors();
 // require models for syncing
 const db = require('./models');
 
@@ -18,6 +20,8 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // invoke routes
+htmlRouter(app);
+booksRouter(app);
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync({ force: true }).then(() => {
