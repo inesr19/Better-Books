@@ -1,22 +1,88 @@
+body {
+    background-image: url(../Image/books.jpg);
+}
+
+.nav-wrapper{
+    background-color: rgba(117, 190, 218, .8);
+}
+
 .brand-logo {
     margin-left: 10px;
 }
 
 .header-container {
     text-align: center;
+    color: white;
 }
+
+h1 {
+    text-align: center;
+    color: transparent;
+    animation-name: h1;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes h1 {
+    from {color: transparent;}
+    to {color: white;}
+  }
+
+h4 {
+    margin-top: -1%;
+    text-align: center;
+    color: transparent;
+    animation-name: h4;
+    animation-duration: 4s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes h4 {
+    from {color: transparent;}
+    to {color: white;}
+  }
 
 .content-container {
     margin: 15%;
-    margin-top: -2%;
+    margin-top: -1%;
     padding: 2%;
     box-shadow: 0 0 5px black;
     border-radius: 5px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, .8);
+  }
+
+.input-field input:focus + label {
+    color: rgba(117, 190, 218) !important;
+  }
+  /* label underline focus color */
+  .input-field input:focus {
+    border-bottom: 1px solid rgba(117, 190, 218) !important;
+    box-shadow: 0 1px 0 0 rgba(117, 190, 218) !important
+  }
+
+::placeholder {
+    color: slategray;
+    font-style: italic;
+  }
+
+.btn, .btn-large {
+    color: white;
+    background-color: rgba(117, 190, 218);
+}
+
+.btn:hover, .btn-large:hover, a:hover {
+    color: slategray;
+    background-color: rgba(255, 255, 255, .8);
 }
 
 .bookInfo {
     margin-top: -20%;
+}
+
+.card-panel {
+    background-color: rgba(255, 255, 255, .8) !important;
+    align-items: center;
 }
 
 .title {
