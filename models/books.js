@@ -3,7 +3,6 @@ module.exports = function (sequelize, DataTypes) {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
         },
         author: {
             type: DataTypes.STRING,
