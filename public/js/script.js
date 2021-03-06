@@ -30,13 +30,16 @@ function searchBook(searchValue) {
 
     const itemsArray = response.items;
     for (let i = 0; i < itemsArray.length; i++) {
+      console.log(itemsArray[i]);
+
       const item = itemsArray[i].volumeInfo;
       const imgEl = item.imageLinks;
       const titleEl = item.title;
       const authorEl = item.authors;
       const desEl = item.description;
       const catEl = item.categories;
-      const isbn = item.industryIdentifiers[0].identifier;
+      // const isbn = item.industryIdentifiers[0].identifier;
+      const isbn = 123;
       const bookInfoDiv = $('<div class="card-panel">')
 
       $("<br><br>").appendTo(bookInfoDiv);
@@ -93,11 +96,12 @@ function searchBook(searchValue) {
       const author = $(this).siblings('.author').text();
       const description = $(this).siblings('.description').text();
       const cover = $(this).siblings('.image').attr('src');
-      const isbn = $(this).siblings('.isbn').text();
+      // const isbn = $(this).siblings('.isbn').text();
+      const isbn = 123;
 
-      console.log(title)
+      console.log(title);
 
-      let email = []
+      let email = "fake@test.com";
       const data = {
         title,
         author,
@@ -113,21 +117,23 @@ function searchBook(searchValue) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(
          data
-        })
+        )
       }).then(response => {
+        fetch(`/api/list/${email}`).then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data)
+        });
+
         return response.json();
       })
       .then(data => console.log(data))
       .catch(error => console.log(error))
       
-      fetch(`/api/list/:${email}`).then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data)
-      });
+      
     });
   });
 }

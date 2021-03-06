@@ -13,7 +13,11 @@ module.exports = (app) => {
             cover: req.body.cover,  
             email: req.body.email,
             isbn: req.body.isbn
-        }).then((dbPost) => res.json(dbPost));
+        }).then((dbPost, err) => {
+            res.json(dbPost)
+        }).catch(err => {
+            console.log(err);
+        });
     });
 
     app.post('/api/signup', (req, res) => {
@@ -40,7 +44,6 @@ module.exports = (app) => {
             where: {
                 email: req.params.email
             }
-        }).then((dbBook) => res.json(dbBook));
-        console.log(req.params.email);
+        }).then((dbBooks) => res.json(dbBooks));
     });
 }
