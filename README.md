@@ -28,6 +28,7 @@ The Better Books app is fully responsive and designed to allow a user to keep tr
 - [Sequelize](https://sequelize.org/)
 - [MySQL](https://www.mysql.com/)
 - [Eslint](https://eslint.org/)
+- [Axios](https://www.npmjs.com/package/axios)
 - [DotENV](https://www.npmjs.com/package/dotenv)
 - [Cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
