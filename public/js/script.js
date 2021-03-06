@@ -101,7 +101,7 @@ function searchBook(searchValue) {
           description,
           cover,
           isbn,
-          email: 'martsyalis'
+          email
         })
       }).then(response => {
         return response.json();
