@@ -93,15 +93,18 @@ function searchBook(searchValue) {
       console.log(title)
 
       // Fetch database
-      fetch('http://localhost:8080/api/books', {
+      fetch(`/api/books`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           title,
           author,
           description,
           cover,
           isbn,
-          email: 'martsyalis'
+          email: 'test@abc.com'
         })
       }).then(response => {
         return response.json();
@@ -109,7 +112,7 @@ function searchBook(searchValue) {
       .then(data => console.log(data))
       .catch(error => console.log(error))
       
-      fetch('http://localhost:8080/api/list').then((response) => {
+      fetch(`/api/list`).then((response) => {
         return response.json();
       })
       .then((data) => {
