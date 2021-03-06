@@ -35,10 +35,12 @@ module.exports = (app) => {
     });
 
     app.get('/api/list/:email', (req, res) => {
-        db.Book.findOne({
+        console.log("email we are searching for: ", req.params.email);
+        db.Book.findAll({
             where: {
-                email: req.params.Book
+                email: req.params.email
             }
         }).then((dbBook) => res.json(dbBook));
+        console.log(req.params.email);
     });
 }
