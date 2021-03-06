@@ -1,5 +1,10 @@
 const booksDiv = $(".bookInfo");
 
+// mobile side bar for nav
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
+
 // $(".history").on("click", "li", function() {
 //   searchBook($(this).text());
 // });
@@ -38,12 +43,12 @@ function searchBook(searchValue) {
       // if their is no image, as placeholder.
       if (imgEl !== undefined) {
         $("<img>", {
-          class: "image",
+          class: "image responsive-img",
           src: item.imageLinks.thumbnail,
         }).appendTo(bookInfoDiv);
       } else {
         $("<img>", {
-          class: "image",
+          class: "image responsive-img",
           src: "http://placehold.it/128x198",
         }).appendTo(bookInfoDiv);
       }
