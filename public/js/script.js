@@ -1,5 +1,10 @@
 const booksDiv = $(".bookInfo");
 
+// mobile side bar for nav
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
+
 // $(".history").on("click", "li", function() {
 //   searchBook($(this).text());
 // });
@@ -31,19 +36,19 @@ function searchBook(searchValue) {
       const authorEl = item.authors;
       const desEl = item.description;
       const catEl = item.categories;
-      const isbn = item.industryIdentifiers[0].indentifier;
+      const isbn = item.industryIdentifiers[0].identifier;
       const bookInfoDiv = $('<div class="card-panel">')
 
       $("<br><br>").appendTo(bookInfoDiv);
       // if their is no image, as placeholder.
       if (imgEl !== undefined) {
         $("<img>", {
-          class: "image",
+          class: "image responsive-img",
           src: item.imageLinks.thumbnail,
         }).appendTo(bookInfoDiv);
       } else {
         $("<img>", {
-          class: "image",
+          class: "image responsive-img",
           src: "http://placehold.it/128x198",
         }).appendTo(bookInfoDiv);
       }
@@ -92,6 +97,16 @@ function searchBook(searchValue) {
 
       console.log(title)
 
+      let email = []
+      const data = {
+        title,
+        author,
+        description,
+        cover,
+        isbn,
+        email
+      }
+
       // Fetch database
       fetch(`/api/books`, {
         method: 'POST',
@@ -99,12 +114,7 @@ function searchBook(searchValue) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title,
-          author,
-          description,
-          cover,
-          isbn,
-          email: 'test@abc.com'
+         data
         })
       }).then(response => {
         return response.json();
@@ -112,7 +122,7 @@ function searchBook(searchValue) {
       .then(data => console.log(data))
       .catch(error => console.log(error))
       
-      fetch(`/api/list`).then((response) => {
+      fetch(`/api/list/:${email}`).then((response) => {
         return response.json();
       })
       .then((data) => {

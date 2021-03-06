@@ -15,7 +15,8 @@ body {
     color: white;
 }
 
-h1 {
+h1, h2 {
+    text-shadow: 0 0 10px black;
     text-align: center;
     color: transparent;
     animation-name: h1;
@@ -45,7 +46,7 @@ h4 {
 
 .content-container {
     margin: 15%;
-    margin-top: -1%;
+    margin-top: 2%;
     padding: 2%;
     box-shadow: 0 0 5px black;
     border-radius: 5px;
@@ -100,4 +101,8 @@ a {
     box-shadow: 0 0 5px black;
     border-radius: 5px;
     background-color: white;
+}
+
+form {
+  margin-top: -8%;
 }

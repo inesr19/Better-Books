@@ -14,21 +14,30 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
      <!-- Link CSS file -->
      <link rel="stylesheet" href="./css/style.css"/>
+
+     <!-- Icon style link -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <div class="wrapper">
             <nav>
                 <div class="nav-wrapper">
-                  <a href="#" class="brand-logo">Better Books</a>
+                  <div class="brand-logo">Better Books</div>
+                  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="books.html">Search Books</a></li>
-                    <li><a href="logoff.html">Log Out</a></li>
+                    <li><a href="/books">Search Books</a></li>
+                    <li><a href="/login">Log Out</a></li>
                   </ul>
                 </div>
               </nav>
+
+              <ul class="sidenav" id="mobile-demo">
+                <li><a href="/books">Search Books</a></li>
+                <li><a href="/login">Log Out</a></li>
+              </ul>
+
             <div class="row header-container col s12 m4">
                 <h1>Here are your saved books!</h1>
-                
             </div>
             <div class="container">
               <div class="books"></div>

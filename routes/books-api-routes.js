@@ -1,14 +1,7 @@
 const db = require('../models');
 
 module.exports = (app) => {
-    app.get('/api/list/:email', (req, res) => {
-        db.Book.findAll({
-            where: {
-                email: req.params.email
-            }
-        }).then((dbBook) => res.json(dbBook));
-    });
-
+    
 
     app.post('/api/books', (req, res) => {
         console.log(req.body);
@@ -39,5 +32,15 @@ module.exports = (app) => {
             }
         })
         .then((dbUser) => res.json(dbUser));
+    });
+
+    app.get('/api/list/:email', (req, res) => {
+        console.log("email we are searching for: ", req.params.email);
+        db.Book.findAll({
+            where: {
+                email: req.params.email
+            }
+        }).then((dbBook) => res.json(dbBook));
+        console.log(req.params.email);
     });
 }
