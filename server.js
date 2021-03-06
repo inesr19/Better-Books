@@ -8,7 +8,8 @@ const booksRouter = require('./routes/books-api-routes');
 // express app
 const app = express();
 const PORT = process.env.PORT || 8080;
-cors();
+app.use(cors())
+
 // require models for syncing
 const db = require('./models');
 
